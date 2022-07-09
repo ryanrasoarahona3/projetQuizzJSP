@@ -1,4 +1,4 @@
-package com.example.projetquizzjsp;
+package org.maggy.projetquizzjsp;
 
 import java.io.*;
 import javax.servlet.http.*;

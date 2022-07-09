@@ -1,4 +1,4 @@
-package com.example.projetquizzjsp;
+package org.maggy.projetquizzjsp;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
