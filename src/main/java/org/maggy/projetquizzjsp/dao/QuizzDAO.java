@@ -2,6 +2,7 @@ package org.maggy.projetquizzjsp.dao;
 
 import org.maggy.projetquizzjsp.model.Quizz;
 
+import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,6 +76,25 @@ public class QuizzDAO extends BaseDAO{
         generatedKeys.next();
         int auto_id = generatedKeys.getInt(1);
         u.setId(auto_id);
+    }
+
+    public void delete(Quizz q) throws SQLException {
+        String sql = "DELETE FROM quizz WHERE quizz_id=?";
+        PreparedStatement stmt = getConnection().prepareStatement(sql);
+        stmt.setInt(1, q.getId());
+        stmt.execute();
+    }
+
+    public Quizz get(int id) throws SQLException {
+        String sql = "SELECT * FROM quizz WHERE quizz_id=?";
+        PreparedStatement stmt = getConnection().prepareStatement(sql);
+        stmt.setInt(1, id);
+
+        ResultSet rs = stmt.executeQuery();
+        if(!rs.next()) {
+            return null;
+        }
+        return getFromResultSet(rs);
     }
 
     @Override
