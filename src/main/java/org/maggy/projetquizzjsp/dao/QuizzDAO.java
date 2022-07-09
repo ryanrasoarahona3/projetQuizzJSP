@@ -97,6 +97,20 @@ public class QuizzDAO extends BaseDAO{
         return getFromResultSet(rs);
     }
 
+    public void update(Quizz q) throws SQLException {
+        String sql = "UPDATE quizz SET quizz_question=?, quizz_reponse1=?, quizz_reponse2=?, quizz_reponse3=?," +
+                " quizz_reponse4=?, quizz_reponse=? WHERE quizz_id=?";
+        PreparedStatement stmt = getConnection().prepareStatement(sql);
+        stmt.setString(1, q.getQuestion());
+        stmt.setString(2, q.getReponse1());
+        stmt.setString(3, q.getReponse2());
+        stmt.setString(4, q.getReponse3());
+        stmt.setString(5, q.getReponse4());
+        stmt.setInt(6, q.getAnswer());
+        stmt.setInt(7, q.getId());
+        stmt.execute();
+    }
+
     @Override
     public ArrayList getAll() throws SQLException {
         PreparedStatement stmt = null;

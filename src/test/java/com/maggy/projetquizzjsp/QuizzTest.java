@@ -95,4 +95,23 @@ public class QuizzTest {
         Quizz p = qd.get(1);
         assertEquals(q.getQuestion(), p.getQuestion());
     }
+
+    @Test
+    public void testUpdate() throws SQLException {
+        Quizz q = new Quizz();
+        q.setQuestion("3+3 ?");
+        q.setReponse1("3");
+        q.setReponse2("6");
+        q.setReponse3("9");
+        q.setReponse4("10");
+        q.setAnswer(2);
+
+        qd.add(q);
+        q.setQuestion("3+3 = ?");
+
+        qd.update(q);
+        Quizz p = qd.get(q.getId());
+
+        assertEquals("3+3 = ?", q.getQuestion());
+    }
 }

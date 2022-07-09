@@ -1,6 +1,7 @@
 package org.maggy.projetquizzjsp.service;
 
 import org.maggy.projetquizzjsp.dao.QuizzDAO;
+import org.maggy.projetquizzjsp.model.Quizz;
 import org.maggy.projetquizzjsp.model.User;
 
 import java.util.Map;
@@ -19,6 +20,7 @@ public class SessionManager {
 
     private User activeUser;
     private Map<String, Boolean> quizzResult;
+    private Quizz activeQuizz; // For modification
 
     public User getActiveUser() {
         return activeUser;
@@ -34,5 +36,13 @@ public class SessionManager {
 
     public void setQuizzResult(Map<String, Boolean> quizzResult) {
         this.quizzResult = quizzResult;
+    }
+
+    public Quizz getActiveQuizz() {
+        return activeQuizz;
+    }
+
+    public void setActiveQuizz(Quizz activeQuizz) {
+        this.activeQuizz = activeQuizz;
     }
 }
