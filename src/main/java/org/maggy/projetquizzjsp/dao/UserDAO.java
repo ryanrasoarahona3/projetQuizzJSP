@@ -80,4 +80,22 @@ public class UserDAO extends BaseDAO {
         }
         return output;
     }
+
+    public boolean verifyCredentials(User u) throws SQLException {
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM \"user\" WHERE user_email=? AND user_password=?");
+        stmt.setString(1, u.getEmail());
+        stmt.setString(2, u.getPassword());
+        ResultSet rs = stmt.executeQuery();
+        return rs.next();
+    }
+
+    public User searchByEmail(String email) throws SQLException {
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM \"user\" WHERE user_email=?");
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        if(!rs.next()) {
+            return null;
+        }
+        return getFromResultSet(rs);
+    }
 }
