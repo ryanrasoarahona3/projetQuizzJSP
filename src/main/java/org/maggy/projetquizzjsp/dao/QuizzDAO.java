@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class QuizzDAO extends BaseDAO{
     private static QuizzDAO instance = null;
@@ -83,6 +85,26 @@ public class QuizzDAO extends BaseDAO{
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
             output.add(getFromResultSet(rs));
+        }
+        return output;
+    }
+
+    public HashMap evaluate(Map<String, String[]> rm) throws SQLException {
+        HashMap<String, Boolean> output = new HashMap<String, Boolean>();
+        ArrayList<Quizz> quizz_list = getAll();
+        for(int i = 0; i < quizz_list.size(); i++){
+            Quizz q = quizz_list.get(i);
+            if(rm.containsKey("quizz-" + q.getId())){
+
+                String rmValue = rm.get("quizz-" + q.getId())[0];
+                String answer = ""+q.getAnswer();
+                if(rmValue.equals(answer)){
+                    output.put("quizz-" + q.getId(), true);
+                }else{
+                    output.put("quizz-" + q.getId(), false);
+                }
+
+            }
         }
         return output;
     }
