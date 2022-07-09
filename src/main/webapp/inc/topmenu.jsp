@@ -19,9 +19,6 @@
             <li>
                <a class="nav-link" href="http://localhost:8080/projetQuizzJSP_war_exploded/quizz">Quizz</a>
             </li>
-            <li>
-               <a class="nav-link" href="http://localhost:8080/projetQuizzJSP_war_exploded/evaluation">Evaluate</a>
-            </li>
          </ul>
       </div>
    </div>
