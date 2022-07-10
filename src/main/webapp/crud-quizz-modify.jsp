@@ -13,7 +13,7 @@
     int a = 3;
 %>
 
-<form method="post" action="quizz">
+<form method="post" action="quizz-modify">
 
     <div class="my-3">
         <h2>Modifier une question</h2>

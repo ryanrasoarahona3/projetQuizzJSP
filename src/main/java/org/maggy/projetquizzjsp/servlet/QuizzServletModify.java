@@ -43,5 +43,30 @@ public class QuizzServletModify extends BaseServlet {
             e.printStackTrace();
         }
 
+        int id = Integer.parseInt(request.getParameter("id"));
+        String question = request.getParameter("question");
+        String picture = request.getParameter("picture");
+        String reponse1 = request.getParameter("response1");
+        String reponse2 = request.getParameter("response2");
+        String reponse3 = request.getParameter("response3");
+        String reponse4 = request.getParameter("response4");
+        int answer = Integer.parseInt(request.getParameter("answer"));
+
+        Quizz q = new Quizz();
+        q.setId(id);
+        q.setQuestion(question);
+        q.setReponse1(reponse1);
+        q.setReponse2(reponse2);
+        q.setReponse3(reponse3);
+        q.setReponse4(reponse4);
+        q.setAnswer(answer);
+
+        try {
+            QuizzDAO.getInstance().update(q);
+            response.sendRedirect("quizz");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
